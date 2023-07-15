@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="main_layout.html">
+        <div layout:fragment="component">
+
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>FACULTY</th>
+                            <th>SUBJECTS</th>
+                        </tr>
+                        </thead>
+                        <tbody id="faculties_body">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <script type="text/javascript">
+
+
+
+                loadFaculties()
+
+                function loadFaculties(){
+
+                    const httpRequest=new XMLHttpRequest();
+                    httpRequest.open("GET", "/faculty" ,true)
+                    httpRequest.onreadystatechange=function(){
+                        if(httpRequest.readyState==XMLHttpRequest.DONE && httpRequest.status==200){
+                            let jsonResponse=JSON.parse(httpRequest.responseText);
+
+                            let tableContent="";
+
+                            for (let i=0; i<jsonResponse.length; i++){
+                                tableContent+="<tr>";
+                                tableContent+="<td>"+jsonResponse[i].id+"</td>";
+                                tableContent+="<td>"+jsonResponse[i].name+"</td>";
+                                tableContent+="<td><button class='btn btn-primary btn-sm'>SUBJECTS</button></td>"
+                                tableContent+="</tr>";
+                            }
+                            document.getElementById("faculties_body").innerHTML=tableContent;
+                        }
+                    }
+                    httpRequest.send();
+                }
+
+            </script>
+        </div>
+</html>
