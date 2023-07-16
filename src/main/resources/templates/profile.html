@@ -4,9 +4,6 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="main_layout.html">
 <div layout:fragment="component">
-    <style>
-        @import url("/templates/profile.css");
-    </style>
     <div class="container">
         <input id="userId" th:value="${#authentication.principal.id}" type="hidden">
         <input id="courseId" th:value="${#authentication.principal.course.getId()}" type="hidden">

@@ -12,10 +12,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin/users")
 @AllArgsConstructor
-//@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class AdminRestController {
         private final UserService userService;
 
+    @PreAuthorize("hasRole('ROLE_MAIN_ADMIN')")
         @GetMapping
         public List<UserDTO> getAllUsers() {
             return userService.getAllUsers();
@@ -26,11 +26,13 @@ public class AdminRestController {
             return userService.getUserById(id);
         }
 
+    @PreAuthorize("hasRole('ROLE_MAIN_ADMIN')")
         @PostMapping
         public User addUser(@RequestBody User user) {
             return userService.addUser(user);
         }
 
+    @PreAuthorize("hasRole('ROLE_MAIN_ADMIN')")
         @DeleteMapping("/{id}")
         public void deleteUser(@PathVariable Long id) {
             userService.deleteUser(id);

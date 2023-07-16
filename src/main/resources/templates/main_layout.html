@@ -26,7 +26,7 @@
                   <a class="nav-link" th:href="@{'/sign-up'}">Sign up</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasAnyRole('ROLE_MAIN_ADMIN')">
-                  <a class="nav-link" th:href="@{'/main-admin'}">For Admin</a>
+                  <a class="nav-link" th:href="@{'/admin-panel'}">For Admin</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasAnyRole('ROLE_MODER', 'ROLE_MAIN_ADMIN')">
                   <a class="nav-link" th:href="@{'/moderator-panel'}">For Moders</a>
